@@ -18,7 +18,7 @@ nc 127.0.0.1 70
 0 sample.txt
 The gopher server script is alive :D
 0 hello.txt
-can't open the file: hello.txt
+can\'t open the file: hello.txt
 2
 the protocol is broken, try 0 <file>
 ```
