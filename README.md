@@ -15,6 +15,7 @@ nc 127.0.0.1 70
 then there would be a prompt use text file request, that's the only feature this script support for now
 ```bash
 nc 127.0.0.1 70
+=== Welcome to the Gopher server written in python by zahir meddour ===
 0 sample.txt
 The gopher server script is alive :D
 0 hello.txt
