@@ -14,6 +14,7 @@ s = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
 s.bind( ( sys.argv[ 1 ], int( sys.argv[ 2 ] ) ) )
 s.listen( 1 )
 connection, client = s.accept()
+connection.send( "=== Welcome to the Gopher server written in python by zahir meddour ===\n".encode())
 while 1:
     request = connection.recv( 1024 )
     dataRequest = request.split()
