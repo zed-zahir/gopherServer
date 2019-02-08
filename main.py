@@ -22,17 +22,51 @@ while 1:
     item = dataRequest[ 0 ]
     print( item )
     if item.decode() == "0":
+        try:
+            fileToOpen = dataRequest[1]
+        except IndexError:
+            connection.send( "you didn't specify a file to open\n".encode() )
+            print( "the peer didn't specify a file to open" )
+            continue
         fileToOpen = dataRequest[ 1 ]
         try:
             f = open( fileToOpen.decode() )
         except:
-            fileNotFound = "can't open the file: " + fileToOpen.decode() + '\n'
+            fileNotFound = "file: \"" + fileToOpen.decode() + "\" not found\n"
             connection.send( fileNotFound.encode() )
+            print( "file the peer try access \"" + fileToOpen.decode() +"\" doesn't exist" )
             continue
         fRead = f.readlines()
         fRead = ''.join( fRead )
         fRead = fRead + '\n'
         connection.send( fRead.encode() )
+    elif item.decode() == "1":
+        #TODO Support this feature
+        connection.send( "this feature is not supported yet\n".encode() )
+    elif item.decode() == "2":
+        #TODO Support this feature
+        connection.send( "this feature is not supported yet\n".encode() )
+    elif item.decode() == "3":
+        #TODO Support this feature
+        connection.send( "this feature is not supported yet\n".encode() )
+    elif item.decode() == "4":
+        #TODO Support this feature
+        connection.send( "this feature is not supported yet\n".encode() )
+    elif item.decode() == "5":
+        #TODO Support this feature
+        connection.send( "this feature is not supported yet\n".encode() )
+    elif item.decode() == "6":
+        #TODO Support this feature
+        connection.send( "this feature is not supported yet\n".encode() )
+    elif item.decode() == "7":
+        #TODO Support this feature
+        connection.send( "this feature is not supported yet\n".encode() )
+    elif item.decode() == "8":
+        #TODO Support this feature
+        connection.send( "this feature is not supported yet\n".encode() )
+    elif item.decode() == "9":
+        #TODO Support this feature
+        connection.send( "this feature is not supported yet\n".encode() )
     else:
         connection.send( "the protocol is broken, try 0 <file>\n".encode() )
         print( "the protocol is broken" )
