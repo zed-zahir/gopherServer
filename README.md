@@ -26,3 +26,7 @@ the protocol is broken, try 0 <file>
 Gopher RFC is: rfc1436
 
 link: [rfc1436](https://www.ietf.org/rfc/rfc1436.txt)
+
+here is the wikipedia article about the protocol
+
+link [wikipedia Gopher protocol](https://en.wikipedia.org/wiki/Gopher_(protocol))
