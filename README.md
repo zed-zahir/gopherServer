@@ -23,4 +23,5 @@ can't open the file: hello.txt
 the protocol is broken, try 0 <file>
 ```
 Gopher RFC is: rfc1436
+
 link: [rfc1436](https://www.ietf.org/rfc/rfc1436.txt)
