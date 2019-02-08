@@ -19,8 +19,9 @@ while 1:
     dataRequest = request.split()
     print( client, dataRequest )
     item = dataRequest[ 0 ]
-    fileToOpen = dataRequest[ 1 ]
+    print( item )
     if item.decode() == "0":
+        fileToOpen = dataRequest[ 1 ]
         try:
             f = open( fileToOpen.decode() )
         except:
@@ -32,6 +33,8 @@ while 1:
         fRead = fRead + '\n'
         connection.send( fRead.encode() )
     else:
+        connection.send( "the protocol is broken, try 0 <file>\n".encode() )
         print( "the protocol is broken" )
+
 s.close()
 
