@@ -4,7 +4,7 @@ import socket
 import os
 
 s = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
-s.bind( ( "127.0.0.1", 70 )
+s.bind( ( "127.0.0.1", 7000 ) )
 s.listen( 1 )
 while True:
     connection, client = s.accept()
@@ -14,7 +14,12 @@ while True:
     print( dataRequest )
     item = dataRequest[ 0 ]
     if item.decode() == "0":
-        f = open( dataRequest[ 1 ].decode() )
+        try:
+            f = open( dataRequest[ 1 ].decode() )
+        except:
+            connection.send( "can't open the file: ".encode() + dataRequest[ 1 ] )
+            continue
         fRead = f.readlines()
         connection.send( ''.join(fRead).encode() )
 s.close()
+
