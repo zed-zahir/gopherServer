@@ -2,24 +2,36 @@
 
 import socket
 import os
+import sys
+
+print( """
+        script as sgopher server
+        usage: ./script.py <ip address> <tcp port>
+
+        """)
 
 s = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
-s.bind( ( "127.0.0.1", 70 ) )
+s.bind( ( sys.argv[ 1 ], int( sys.argv[ 2 ] ) ) )
 s.listen( 1 )
-while True:
-    connection, client = s.accept()
+connection, client = s.accept()
+while 1:
     request = connection.recv( 1024 )
-    print( "request from: " + client[0] + " was " + request.decode() )
     dataRequest = request.split()
-    print( dataRequest )
+    print( client, dataRequest )
     item = dataRequest[ 0 ]
+    fileToOpen = dataRequest[ 1 ]
     if item.decode() == "0":
         try:
-            f = open( dataRequest[ 1 ].decode() )
+            f = open( fileToOpen.decode() )
         except:
-            connection.send( "can't open the file: ".encode() + dataRequest[ 1 ] )
+            fileNotFound = "can't open the file: " + fileToOpen.decode() + '\n'
+            connection.send( fileNotFound.encode() )
             continue
         fRead = f.readlines()
-        connection.send( ''.join(fRead).encode() )
+        fRead = ''.join( fRead )
+        fRead = fRead + '\n'
+        connection.send( fRead.encode() )
+    else:
+        print( "the protocol is broken" )
 s.close()
 
