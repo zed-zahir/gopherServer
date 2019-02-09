@@ -38,7 +38,7 @@ while 1:
             continue
         fileToOpen = dataRequest[ 1 ]
         try:
-            f = open( fileToOpen.decode() )
+            f = open( "../Downloads/" + fileToOpen.decode() )
         except:
             fileNotFound = "file: \"" + fileToOpen.decode() + "\" not found\n"
             connection.send( fileNotFound.encode() )
