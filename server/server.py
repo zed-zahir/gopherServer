@@ -81,7 +81,6 @@ while 1:
                 connection.send(fDataRead)
                 print( "uploading the dos file" )
             elif "no" in downloadConfirmation.decode():
-                connection.send( "okay now quitting\n".encode() )
                 print( "the peer refused to download the dos file" )
             else:
                 connection.send( "you didn't well specify the correct answer\n".encode() )
