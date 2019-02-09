@@ -14,16 +14,24 @@ print( """
 s = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
 s.bind( ( sys.argv[ 1 ], int( sys.argv[ 2 ] ) ) )
 s.listen( 1 )
-connection, client = s.accept()
-time.sleep( 1 )
-connection.send( "=== Welcome to the Gopher server written in python by zahir meddour ===\n".encode())
 while 1:
-    request = connection.recv( 1024 )
+    connection, client = s.accept()
+    time.sleep( 1 )
+    connection.send( "=== Welcome to the Gopher server written in python by zahir meddour ===\n".encode())
+    try:
+        request = connection.recv( 1024 )
+    except:
+        print( "bad connection" )
     if request == None:
         continue
     dataRequest = request.split()
     print( client, dataRequest )
-    item = dataRequest[ 0 ]
+    try:
+        item = dataRequest[ 0 ]
+    except IndexError:
+        connection.send( "internal error\n".encode() )
+        print( "internal error" )
+        break
     if item.decode() == "0":
         try:
             fileToOpen = dataRequest[1]
@@ -43,6 +51,7 @@ while 1:
         fRead = ''.join( fRead )
         fRead = fRead + '\n'
         connection.send( fRead.encode() )
+        connection.close()
     elif item.decode() == "1":
         #TODO Support this feature
         connection.send( "this feature is not supported yet\n".encode() )
