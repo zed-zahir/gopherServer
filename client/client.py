@@ -4,7 +4,7 @@ import socket
 import os
 import sys
 import time
-
+from binascii import unhexlify
 
 if len( sys.argv ) != 5:
     print( "usage: script <ip address> <tcp port> <command> <the file>" )
@@ -27,7 +27,7 @@ else:
             if "yes" in answerDownload:
                 s.send( "yes".encode() )
                 f = open( sys.argv[ 4 ], "wb" )
-                f.write( s.recv( 5000 ) )
+                f.write( unhexlify(s.recv( 5000 ).decode()) )
                 f.close()
             else:
                 s.send( "no".encode() )

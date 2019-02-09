@@ -70,7 +70,7 @@ while 1:
             print( "[5] the peer didn't specify a file to download" )
             continue
         secondF = open( "../Downloads/" + dataRequest[ 1 ].decode(), "rb" )
-        fDataRead = secondF.readline()
+        fDataRead = secondF.read().hex()
         f = open( "../Downloads/" + dataRequest[ 1 ].decode(), "rb" )
         fRead = f.readline()[0:2].decode()
         if fRead == 'MZ':
@@ -78,7 +78,8 @@ while 1:
             downloadConfirmation = connection.recv( 1024 )
             if "yes" in downloadConfirmation.decode():
                 #TODO fix the TypeError on the send(fDataRead)
-                connection.send(fDataRead)
+                #print( "sending the file " + fDataRead )
+                connection.send(fDataRead.encode())
                 print( "uploading the dos file" )
             elif "no" in downloadConfirmation.decode():
                 print( "the peer refused to download the dos file" )
