@@ -72,11 +72,24 @@ while 1:
             connection.send( "you didn't specify a file to download\n".encode() )
             print( "[5] the peer didn't specify a file to download" )
             continue
+        ff = open( dataRequest[ 1 ].decode(), "rb" )
+        fDataRead = ff.readlines().decode()
         f = open( dataRequest[ 1 ].decode(), "rb" )
         fRead = f.readline()[0:2].decode()
         if fRead == 'MZ':
-            connection.send( "would you like to download the file?<yes/no>\n".encode() )
-            print( "the peer wanted to download the file" )
+            connection.send( "the file exist, would you like to download the file?<yes/no>\n".encode() )
+            downloadConfirmation = connection.recv( 1024 )
+            if "yes" in downloadConfirmation.decode():
+                #TODO fix the TypeError on the send(fDataRead)
+                #connection.send(fDataRead)
+                print( "uploading the dos file" )
+            elif "no" in downloadConfirmation.decode():
+                connection.send( "okay now quitting\n".encode() )
+                print( "the peer refused to download the dos file" )
+            else:
+                connection.send( "you didn't well specify the correct answer\n".encode() )
+            connection.close()
+            print( "the peer wanted to download the file " + dataRequest[ 1 ].decode() )
         else:
             print( "the peer didn't request a DOS file\n" )
             connection.send( "you didn't specify a DOS file\n".encode() )

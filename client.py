@@ -9,7 +9,6 @@ import time
 s = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
 s.connect( ( sys.argv[ 1 ], int( sys.argv[2] ) ) )
 print( s.recv( 1024 ).decode() )
-time.sleep( 1 )
 if sys.argv[ 3 ] == "text":
     message = "0 " + sys.argv[ 4 ]
     s.send( message.encode() )
@@ -18,7 +17,15 @@ if sys.argv[ 3 ] == "text":
 elif sys.argv[ 3 ] == "dos":
     message = "5 " + sys.argv[ 4 ]
     s.send( message.encode() )
-    print( s.recv( 1024 ).decode() )
+    receivedMessage =  s.recv( 1024 ).decode()
+    print( receivedMessage )
+    if "the file exist" in receivedMessage:
+        answerDownload = input(  )
+        if "yes" in answerDownload:
+            s.send( "yes".encode() )
+            print(s.recv( 1024 ).decode())
+        else:
+            s.send( "no".encode() )
     s.close()
 else:
     os.exit()
