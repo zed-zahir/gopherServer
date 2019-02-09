@@ -27,10 +27,25 @@ else:
             if "yes" in answerDownload:
                 s.send( "yes".encode() )
                 f = open( sys.argv[ 4 ], "wb" )
+                print( "writing..." )
                 f.write( unhexlify(s.recv( 5000 ).decode()) )
+                print( "done!" )
                 f.close()
             else:
                 s.send( "no".encode() )
         s.close()
+    elif sys.argv[ 3 ] == "binary":
+        message = "9 " + sys.argv[ 4 ]
+        s.send( message.encode() )
+        receivedMessage = s.recv( 1024 ).decode()
+        if "the file exist" in receivedMessage:
+            print( "the file " + sys.argv[ 4 ] + " exist" )
+            f = open( sys.argv[ 4 ], "wb" )
+            print( "writing..." )
+            f.write( unhexlify( s.recv( 5000 ).decode() ) )
+            print( "done!" )
+            f.close()
+        else:
+            s.close()
     else:
         os.exit()

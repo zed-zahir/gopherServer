@@ -100,8 +100,18 @@ while 1:
         #TODO Support this feature
         connection.send( "this feature is not supported yet\n".encode() )
     elif item.decode() == "9":
-        #TODO Support this feature
-        connection.send( "this feature is not supported yet\n".encode() )
+        #TODO Support the download stream file for the dos format
+        try:
+            fileToOpen = dataRequest[1]
+        except IndexError:
+            connection.send( "you didn't specify a file to download\n".encode() )
+            print( "[9] the peer didn't specify a file to download" )
+            continue
+        f = open( "../Downloads/" + dataRequest[ 1 ].decode(), "rb" )
+        connection.send( "the file exist\n".encode() )
+        fDataRead = f.read().hex()
+        connection.send(fDataRead.encode())
+        connection.close()
     elif item.decode() == None:
         connection.send( "you didn't specify a parameter try 0 <file>\n".encode() )
         print( "there is not parameter specified" )
