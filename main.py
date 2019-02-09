@@ -56,20 +56,22 @@ while 1:
         #TODO Support this feature
         connection.send( "this feature is not supported yet\n".encode() )
     elif item.decode() == "5":
-        #TODO Support this feature
-
+        #TODO Support the download stream file for the dos format
         try:
             fileToOpen = dataRequest[1]
         except IndexError:
             connection.send( "you didn't specify a file to download\n".encode() )
             print( "[5] the peer didn't specify a file to download" )
             continue
-
-        fRead = freadlines()
-        print( fRead[ 0:2 ] )
+        f = open( dataRequest[ 1 ].decode(), "rb" )
+        fRead = f.readline()[0:2].decode()
+        if fRead == 'MZ':
+            connection.send( "would you like to download the file?<yes/no>\n".encode() )
+            print( "the peer wanted to download the file" )
+        else:
+            print( "the peer didn't request a DOS file\n" )
+            connection.send( "you didn't specify a DOS file\n".encode() )
         
-        connection.send( "this feature is not supported yet\n".encode() )
-    
     elif item.decode() == "6":
         #TODO Support this feature
         connection.send( "this feature is not supported yet\n".encode() )
