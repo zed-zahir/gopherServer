@@ -21,6 +21,11 @@ if the file exist then it will print on the terminal
 ```
 if the file exist then there would be a prompt to accept or no
 
+### or
+```bash
+./client/client.py 127.0.0.1 70 binary start
+```
+
 Gopher RFC is: rfc1436
 
 link: [rfc1436](https://www.ietf.org/rfc/rfc1436.txt)
