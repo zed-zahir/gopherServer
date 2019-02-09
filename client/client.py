@@ -48,4 +48,4 @@ else:
         else:
             s.close()
     else:
-        os.exit()
+        print( "no parameter are specified" )

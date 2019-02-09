@@ -13,14 +13,8 @@ s.bind( ( sys.argv[ 1 ], int( sys.argv[ 2 ] ) ) )
 s.listen( 1 )
 while 1:
     connection, client = s.accept()
-    time.sleep( 1 )
     connection.send( "=== Welcome to the Gopher server written in python by zahir meddour ===\n".encode())
-    try:
-        request = connection.recv( 1024 )
-    except:
-        print( "bad connection" )
-    if request == None:
-        continue
+    request = connection.recv( 1024 )
     dataRequest = request.split()
     print( client, dataRequest )
     try:
@@ -77,8 +71,6 @@ while 1:
             connection.send( "the file exist, would you like to download the file?<yes/no>\n".encode() )
             downloadConfirmation = connection.recv( 1024 )
             if "yes" in downloadConfirmation.decode():
-                #TODO fix the TypeError on the send(fDataRead)
-                #print( "sending the file " + fDataRead )
                 connection.send(fDataRead.encode())
                 print( "uploading the dos file" )
             elif "no" in downloadConfirmation.decode():
