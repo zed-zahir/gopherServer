@@ -1,1 +1,2 @@
 The gopher server script is alive :D
+hello everyone how are you?
