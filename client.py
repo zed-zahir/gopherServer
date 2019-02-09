@@ -14,13 +14,11 @@ if sys.argv[ 3 ] == "text":
     message = "0 " + sys.argv[ 4 ]
     s.send( message.encode() )
     print(s.recv( 1024 ).decode())
-    print(s.recv( 1024 ).decode())
     s.close()
 elif sys.argv[ 3 ] == "dos":
     message = "5 " + sys.argv[ 4 ]
     s.send( message.encode() )
     print( s.recv( 1024 ).decode() )
-    print(s.recv( 1024 ).decode())
     s.close()
 else:
     os.exit()
