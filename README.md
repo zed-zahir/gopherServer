@@ -1,6 +1,6 @@
 # gopherServer script in python
 
-how to use this script in debian based distro
+how to use this script in sudo based Unix like OS
 ```python
 sudo ./server/server.py 127.0.0.1 70
 ```
