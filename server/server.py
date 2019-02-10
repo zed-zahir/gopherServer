@@ -5,6 +5,9 @@ import os
 import sys
 import time
 
+# Global Variables
+PATH = "../Download/"
+
 # check the parameters
 
 if len( sys.argv ) < 3:
@@ -65,7 +68,7 @@ while 1:
         # catch the open file if broken
 
         try:
-            f = open( "../Downloads/" + fileToOpen.decode() )
+            f = open( PATH + fileToOpen.decode() )
         except:
             fileNotFound = "file: \"" + fileToOpen.decode() + "\" not found\n"
             connection.send( fileNotFound.encode() )
@@ -123,13 +126,13 @@ while 1:
 
         # open the file for the data to send
 
-        secondF = open( "../Downloads/" + dataRequest[ 1 ].decode(), "rb" )
+        secondF = open( PATH + dataRequest[ 1 ].decode(), "rb" )
         fDataRead = secondF.read().hex()
 
         # open the file to check the authencity of the dos format
 
-        f = open( "../Downloads/" + dataRequest[ 1 ].decode(), "rb" )
-        fRead = f.readline()[0:2].decode()
+        f = open( PATH + dataRequest[ 1 ].decode(), "rb" )
+        fRead = f.read()[0:2].decode()
         if fRead == 'MZ':
 
             # confirm the file exist and send the hint message
@@ -183,7 +186,7 @@ while 1:
 
         # open the file in read and binary mode
 
-        f = open( "../Downloads/" + dataRequest[ 1 ].decode(), "rb" )
+        f = open( PATH + dataRequest[ 1 ].decode(), "rb" )
         connection.send( "the file exist\n".encode() )
         
         # hexify and send the data
