@@ -6,7 +6,7 @@ import sys
 import time
 
 # Global Variables
-PATH = "../Download/"
+PATH = "../Downloads/"
 
 # check the parameters
 
@@ -66,9 +66,9 @@ while 1:
         fileToOpen = dataRequest[ 1 ]
 
         # catch the open file if broken
-
+        print( PATH + fileToOpen.decode() )
         try:
-            f = open( PATH + fileToOpen.decode() )
+            f = open( PATH + fileToOpen.decode(), "r" )
         except:
             fileNotFound = "file: \"" + fileToOpen.decode() + "\" not found\n"
             connection.send( fileNotFound.encode() )
