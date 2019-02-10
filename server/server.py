@@ -127,7 +127,7 @@ while 1:
         # open the file for the data to send
 
         secondF = open( PATH + dataRequest[ 1 ].decode(), "rb" )
-        fDataRead = secondF.read().hex()
+        fDataRead = secondF.readline().hex()
 
         # open the file to check the authencity of the dos format
 
