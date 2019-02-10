@@ -1,7 +1,7 @@
 # gopherServer script in python
 
 how to use this script in sudo based Unix like OS
-```bash`
+```bash
 $ cd server/
 $ sudo ./server.py 127.0.0.1 70
 ```
