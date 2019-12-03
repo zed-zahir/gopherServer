@@ -27,12 +27,10 @@ else:
         print( "there is an error while processing your request" )
         sys.exit()
 
-
-
     # send the parameter of 0 means "text"
     
     if int(request) == 1:
-        data = input( "the text file name?" )
+        data = input( "the text file name?: " )
         message = "0 " + data
         s.send( message.encode() )
         print(s.recv( 1024 ).decode())
@@ -41,7 +39,7 @@ else:
     # send the parameter 5 emans "dos"
 
     elif int(request) == 2:
-        data = input( "the dos filename?" )
+        data = input( "the dos filename?: " )
         message = "5 " + data
         s.send( message.encode() )
         receivedMessage =  s.recv( 1024 ).decode()
@@ -56,7 +54,7 @@ else:
 
                 # open an empty file writable
 
-                f = open( sys.argv[ 4 ], "wb" )
+                f = open( data, "wb" )
                 print( "writing..." )
 
                 # recv the data decode it unhexfy it then write it to the f socket
@@ -71,7 +69,7 @@ else:
     # send the parameter 9 means "binary"
 
     elif int(request) == 3:
-        data = input( "the binary filename?" )
+        data = input( "the binary filename?: " )
         message = "9 " + data
         s.send( message.encode() )
         receivedMessage = s.recv( 1024 ).decode()
@@ -80,7 +78,7 @@ else:
 
             # open the file in binary and writable mode
 
-            f = open( sys.argv[ 4 ], "wb" )
+            f = open( data, "wb" )
             print( "writing..." )
 
             # recv and decode and unhexify then write the data to the f socket
