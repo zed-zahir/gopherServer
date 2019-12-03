@@ -31,11 +31,10 @@ while 1:
 
     # welcome message
 
-    connection.send( """=== Welcome to the Gopher server written in python by zahir meddour ===\n
-            
-                        send 1 to retrieve text\n
-                        send 2 to retrieve dos applications\n
-                        send 3 to retrieve binary files""".encode())
+    connection.send( """=== Welcome to the Gopher server written in python by zahir meddour ===
+send 1 for text
+send 2 for dos files
+send 3 for binary files""".encode() )
     
     # grab the connection informations and log with print() function
 
