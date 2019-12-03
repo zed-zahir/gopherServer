@@ -8,8 +8,9 @@ from binascii import unhexlify
 
 # check the parameters
 
-if len( sys.argv ) != 5:
-    print( "usage: script <ip address> <tcp port> <command> <the file>" )
+if len( sys.argv ) != 3:
+    print( "usage: script <ip address> <tcp port>" )
+    sys.exit()
 
 # create the socket and connect
 
@@ -20,19 +21,28 @@ else:
     # print the text file read from the network steam
 
     print( s.recv( 1024 ).decode() )
-    
+
+    request = input()
+    if int(request) > 3 and int(request) < 1:
+        print( "there is an error while processing your request" )
+        sys.exit()
+
+
+
     # send the parameter of 0 means "text"
     
-    if sys.argv[ 3 ] == "text":
-        message = "0 " + sys.argv[ 4 ]
+    if int(request) == 1:
+        data = input( "the text file name?" )
+        message = "0 " + data
         s.send( message.encode() )
         print(s.recv( 1024 ).decode())
         s.close()
 
     # send the parameter 5 emans "dos"
 
-    elif sys.argv[ 3 ] == "dos":
-        message = "5 " + sys.argv[ 4 ]
+    elif int(request) == 2:
+        data = input( "the dos filename?" )
+        message = "5 " + data
         s.send( message.encode() )
         receivedMessage =  s.recv( 1024 ).decode()
         print( receivedMessage )
@@ -60,8 +70,9 @@ else:
 
     # send the parameter 9 means "binary"
 
-    elif sys.argv[ 3 ] == "binary":
-        message = "9 " + sys.argv[ 4 ]
+    elif int(request) == 3:
+        data = input( "the binary filename?" )
+        message = "9 " + data
         s.send( message.encode() )
         receivedMessage = s.recv( 1024 ).decode()
         if "the file exist" in receivedMessage:
