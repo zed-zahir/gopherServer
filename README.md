@@ -1,32 +1,11 @@
 # gopherServer script in python
 
-how to use this script in sudo based Unix like OS
+it's a gopher client in pyhton
+run it as
 ```bash
-$ cd server/
-$ sudo ./server.py 127.0.0.1 70
+./client.py gopher://gopher.floodgap.com/1/world
 ```
-or if you don't want to use the protocol in reserved tcp port, meaning without super user privileges
-```bash
-$ cd server/
-$ ./server.py 127.0.0.1 7000
-```
-in another terminal use
-```bash
-$ ./client/client.py 127.0.0.1 70
-```
-
-if the file exist then it will print on the terminal
-
-### or
-```bash
-$ ./client/client.py 127.0.0.1 70
-```
-if the file exist then there would be a prompt to accept or no
-
-### or
-```bash
-$ ./client/client.py 127.0.0.1 70
-```
+### for now it doesn't print the whole page, and I don't know why!!
 
 Gopher RFC is: rfc1436
 
