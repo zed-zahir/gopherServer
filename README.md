@@ -12,20 +12,20 @@ $ ./server.py 127.0.0.1 7000
 ```
 in another terminal use
 ```bash
-$ ./client/client.py 127.0.0.1 70
+$ ./client/client.py 127.0.0.1 70 text PATH/sample.txt
 ```
 
 if the file exist then it will print on the terminal
 
 ## or
 ```bash
-$ ./client/client.py 127.0.0.1 70
+$ ./client/client.py 127.0.0.1 70 dos Bomb.ex_
 ```
 if the file exist then there would be a prompt to accept or no
 
 ## or
 ```bash
-$ ./client/client.py 127.0.0.1 70
+$ ./client/client.py 127.0.0.1 70 binary start
 ```
 
 Gopher RFC is: rfc1436
