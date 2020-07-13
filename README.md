@@ -17,13 +17,13 @@ $ ./client/client.py 127.0.0.1 70
 
 if the file exist then it will print on the terminal
 
-### or
+## or
 ```bash
 $ ./client/client.py 127.0.0.1 70
 ```
 if the file exist then there would be a prompt to accept or no
 
-### or
+## or
 ```bash
 $ ./client/client.py 127.0.0.1 70
 ```
