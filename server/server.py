@@ -98,7 +98,7 @@ send 3 for binary files
         #connection.send( "this feature is not supported yet\n".encode() )
         directories = ""
         for d in os.listdir(PATH):
-            directories += d + " "
+            directories += d + ", "
         directories += "\n"
         connection.send( directories.encode() )
     
