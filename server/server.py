@@ -32,9 +32,11 @@ while 1:
     # welcome message
 
     connection.send( """=== Welcome to the Gopher server written in python by zahir meddour ===
-send 1 for text
+send 0 for text
+send 1 for directory listing
 send 2 for dos files
-send 3 for binary files""".encode() )
+send 3 for binary files
+""".encode() )
     
     # grab the connection informations and log with print() function
 
@@ -93,7 +95,12 @@ send 3 for binary files""".encode() )
 
     elif item.decode() == "1":
         #TODO Support this feature
-        connection.send( "this feature is not supported yet\n".encode() )
+        #connection.send( "this feature is not supported yet\n".encode() )
+        directories = ""
+        for d in os.listdir(PATH):
+            directories += d + " "
+        directories += "\n"
+        connection.send( directories.encode() )
     
     # support the CCSO Nameserver feature
     
